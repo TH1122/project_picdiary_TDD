@@ -100,11 +100,16 @@ const Home = ({
         <button onClick={onSet}>카테고리 설정</button>
       </SettingContainer>
       <CategoryContainer>
-        {categories.map((el, idx) => {
-          return (
-            <PicCategory key={idx} categoryData={categoryData} category={el} />
-          );
-        })}
+        {categories &&
+          categories.map((el, idx) => {
+            return (
+              <PicCategory
+                key={idx}
+                categoryData={categoryData}
+                category={el}
+              />
+            );
+          })}
       </CategoryContainer>
     </>
   );
