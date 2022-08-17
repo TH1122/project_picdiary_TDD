@@ -85,23 +85,24 @@ const PicCategory = ({ categoryData, category }) => {
       return (
         <>
           <Slider {...settings}>
-            {storyCategory.map((el) => {
-              return (
-                <>
-                  <Slider_wrapper>
-                    <PicWrapper>
-                      <div className="photoContainer">
-                        <img src={el.picture} />
-                      </div>
-                      <div className="storyWrapper">
-                        <Date>{el.date}</Date>
-                        <Content>{`${el.title} / ${el.text}`}</Content>
-                      </div>
-                    </PicWrapper>
-                  </Slider_wrapper>
-                </>
-              );
-            })}
+            {storyCategory &&
+              storyCategory.map((el) => {
+                return (
+                  <>
+                    <Slider_wrapper>
+                      <PicWrapper>
+                        <div className="photoContainer">
+                          <img src={el.picture} />
+                        </div>
+                        <div className="storyWrapper">
+                          <Date>{el.date}</Date>
+                          <Content>{`${el.title} / ${el.text}`}</Content>
+                        </div>
+                      </PicWrapper>
+                    </Slider_wrapper>
+                  </>
+                );
+              })}
           </Slider>
         </>
       );
