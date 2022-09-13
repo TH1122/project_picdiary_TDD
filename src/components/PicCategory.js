@@ -71,6 +71,7 @@ const PicCategory = ({ categoryData, category }) => {
     slidesToScroll: 1,
   };
   const [storyCategory, setStoryCategory] = useState([]);
+  console.log(storyCategory, "storycategoy");
 
   useEffect(() => {
     setStoryCategory(categoryData[category]);
