@@ -3,6 +3,38 @@ import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import PicAdd from "../UI_components/PicAdd";
 
+const Add_container = styled.div`
+  width: 390px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const Info_container = styled.form`
+  height: 76px;
+  background-color: #f4eee2;
+  margin-bottom: 20px;
+  display: flex;
+
+  > .info_wrapper {
+    flex-grow: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+  > .icon_wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+const Picadd_wrapper = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 const AddByDate = ({
   picData,
   setPicData,
@@ -53,38 +85,6 @@ const AddByDate = ({
       });
     setOptions(["---", ...categories]);
   }, [categories]);
-
-  const Add_container = styled.div`
-    width: 390px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  `;
-  const Info_container = styled.form`
-    height: 76px;
-    background-color: #f4eee2;
-    margin-bottom: 20px;
-    display: flex;
-
-    > .info_wrapper {
-      flex-grow: 5;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: stretch;
-    }
-    > .icon_wrapper {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  `;
-  const Picadd_wrapper = styled.section`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  `;
 
   const handleSubmit = (e) => {
     const getRandomNumber = (min, max) => {

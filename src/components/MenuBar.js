@@ -2,42 +2,42 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+const MenuBar_container = styled.section`
+  width: 100%;
+  height: 76px;
+  display: flex;
+  justify-content: space-between;
+  background-color: #b5d8dd;
+`;
+
+const Logo_wrapper = styled.div`
+  flex-grow: 3;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .logo_icon {
+    width: 100px;
+    padding: 5px 30px;
+    border: 2px solid black;
+    background-color: #f3e4e4;
+    font-size: 20px;
+  }
+`;
+
+const Icon_wrapper = styled.div`
+  flex-grow: 4;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+
+  .menu_icon {
+    height: 30px;
+    margin: 0px 5px;
+  }
+`;
+
 const Menubar = () => {
-  const MenuBar_container = styled.section`
-    width: 100%;
-    height: 76px;
-    display: flex;
-    justify-content: space-between;
-    background-color: #b5d8dd;
-  `;
-
-  const Logo_wrapper = styled.div`
-    flex-grow: 3;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
-    .logo_icon {
-      width: 100px;
-      padding: 5px 30px;
-      border: 2px solid black;
-      background-color: #f3e4e4;
-      font-size: 20px;
-    }
-  `;
-
-  const Icon_wrapper = styled.div`
-    flex-grow: 4;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-
-    .menu_icon {
-      height: 30px;
-      margin: 0px 5px;
-    }
-  `;
-
   return (
     <>
       <MenuBar_container>

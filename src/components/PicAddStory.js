@@ -118,6 +118,7 @@ const PicAddStory = ({
       }).then((res) => {
         setIsChanged(!isChanged);
       });
+      window.location.reload();
     }
   };
 

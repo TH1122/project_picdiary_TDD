@@ -2,35 +2,36 @@ import React, { useRef } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 
+const Add_container = styled.div`
+  width: 390px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const Info_container = styled.form`
+  height: 76px;
+  background-color: #f4eee2;
+  margin-bottom: 20px;
+  display: flex;
+
+  > .info_wrapper {
+    flex-grow: 5;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+  }
+  > .icon_wrapper {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+`;
+
 const Add = ({ picData, setPicData }) => {
   const dateRef = useRef(null);
   let navigate = useNavigate();
-  const Add_container = styled.div`
-    width: 390px;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-  `;
-  const Info_container = styled.form`
-    height: 76px;
-    background-color: #f4eee2;
-    margin-bottom: 20px;
-    display: flex;
-
-    > .info_wrapper {
-      flex-grow: 5;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-around;
-      align-items: stretch;
-    }
-    > .icon_wrapper {
-      flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  `;
 
   const handleSubmit = (e) => {
     const getRandomNumber = (min, max) => {

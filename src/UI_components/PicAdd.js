@@ -2,6 +2,29 @@ import React from "react";
 import styled from "styled-components";
 import PicAddStory from "../components/PicAddStory";
 
+const PicContainer = styled.div`
+  background-color: #f2f2f2;
+  width: 330px;
+  height: 504px;
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+
+  > .photoContainer {
+    margin: 15px 0px;
+    width: 300px;
+    height: 300px;
+  }
+  > .storyWrapper {
+    margin: 15px 0px;
+    width: 300px;
+    height: 100px;
+    background-color: #c2c2c2;
+  }
+`;
+
 const PicAdd = ({
   data,
   picture,
@@ -15,29 +38,6 @@ const PicAdd = ({
   isChanged,
   setIsChanged,
 }) => {
-  const PicContainer = styled.div`
-    background-color: #f2f2f2;
-    width: 330px;
-    height: 504px;
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-
-    > .photoContainer {
-      margin: 15px 0px;
-      width: 300px;
-      height: 300px;
-    }
-    > .storyWrapper {
-      margin: 15px 0px;
-      width: 300px;
-      height: 100px;
-      background-color: #c2c2c2;
-    }
-  `;
-
   return (
     <div>
       <PicContainer className="picContainer">
