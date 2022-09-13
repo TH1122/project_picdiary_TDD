@@ -62,7 +62,12 @@ const Wrap = styled.div`
   }
 `;
 
-const PicCategory = ({ categoryData, category, categories }) => {
+const PicCategory = ({
+  category,
+  categories,
+  picData,
+  categoryDataChanged,
+}) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -71,11 +76,8 @@ const PicCategory = ({ categoryData, category, categories }) => {
     slidesToScroll: 1,
   };
   const [storyCategory, setStoryCategory] = useState([]);
-  console.log(storyCategory, "storycategoy");
 
   useEffect(() => {
-    console.log(category, "category-pic");
-    console.log(categories, "categories=picCategory");
     fetch("http://localhost:3001/categories/")
       .then((res) => {
         if (!res.ok) {
@@ -84,16 +86,11 @@ const PicCategory = ({ categoryData, category, categories }) => {
         return res.json();
       })
       .then((data) => {
-        console.log(data, "data=pic");
-        console.log(
-          data.filter((el) => el.category === category)[0].content,
-          "datafilter"
-        );
         setStoryCategory(
           data.filter((el) => el.category === category)[0].content
         );
       });
-  }, [categories]);
+  }, [categories, categoryDataChanged]);
 
   class SimpleSlider extends Component {
     render() {

@@ -41,7 +41,7 @@ function App() {
         setRawCategoryData(data);
         setCategories(data.map((el) => el.category));
       });
-  }, []);
+  }, [isChanged]);
 
   return (
     <>
@@ -62,6 +62,8 @@ function App() {
                         setRawCategoryData={setRawCategoryData}
                         categories={categories}
                         setCategories={setCategories}
+                        isChanged={isChanged}
+                        setIsChanged={setIsChanged}
                       />
                     )
                   }

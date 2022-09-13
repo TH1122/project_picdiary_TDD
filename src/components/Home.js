@@ -16,54 +16,70 @@ const CategoryContainer = styled.section`
   align-items: center;
 `;
 
-const Home = ({ picData, categories }) => {
-  // const [rawCategoryData, setRawCategoryData] = useState([]);
-  // const [categories, setCategories] = useState([]);
-  const [categoryData, setCategoryData] = useState([]);
+const Home = ({
+  picData,
+  categories,
+  rawCategoryData,
+  setRawCategoryData,
+  isChanged,
+  setIsChanged,
+}) => {
   const [isSetting, setIsSetting] = useState(false);
-  useEffect(() => {
-    // fetch("http://localhost:3001/categories/")
-    //   .then((res) => {
-    //     if (!res.ok) {
-    //       throw Error("could not fetch the data for that resource");
-    //     }
-    //     return res.json();
-    //   })
-    //   .then((data) => {
-    //     setCategoryData(data);
-    //     setCategories(data.map((el) => el.category));
-    //   });
-    console.log(categories, "categories");
-  }, []);
-
-  // useEffect(() => {
-  //   //카테고리데이터가 배열일 경우
-  //   categories.forEach((el) => {
-  //     categoryData.push([el, []]);
-  //   });
-  //   setCategoryData(categoryData);
-  // }, [categories]);
-
-  // useEffect(() => {
-  //   // 카테고리데이터가 배열일 경우
-  //   picData.forEach((el) => {
-  //     el.content.forEach((content) => {
-  //       if (categories.includes(content.category)) {
-  //         categoryData[categories.indexOf(content.category)][1].push({
-  //           date: el.date,
-  //           picture: content.picture,
-  //           text: content.text,
-  //           title: el.title,
-  //         });
-  //       }
-  //     });
-  //   });
-  //   setCategoryData(categoryData);
-  // }, [categories]);
-
+  const [categoryDataChanged, setCategoryDataChanged] = useState(false);
   const onSet = () => {
     setIsSetting(!isSetting);
   };
+  useEffect(() => {
+    // 스토리 내부 카테고리 설정 내역 변경시 picData를 새로 받아올 수 있도록
+    console.log("pic변경");
+    console.log(categories);
+    fetch("http://localhost:3001/diary/")
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("could not fetch the data for that resource");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data, "data-pic");
+        console.log(categories, "cate");
+        categories.forEach((category) => {
+          let id = -1;
+          rawCategoryData.forEach((el) => {
+            if (el.category === category) {
+              id = el.id;
+            }
+          });
+          console.log(category, id, "ca, id");
+          let temp = [];
+          data.forEach((el) => {
+            el.content.forEach((content) => {
+              if (content.category === category) {
+                temp.push({
+                  date: el.date,
+                  title: el.title,
+                  picture: content.picture,
+                  text: content.text,
+                });
+              }
+            });
+          });
+          console.log(temp, "temp");
+          fetch(`http://localhost:3001/categories/${id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({ content: temp }),
+          }).then((res) => {
+            // console.log("?");
+            setIsChanged(isChanged);
+            setCategoryDataChanged(!categoryDataChanged);
+          });
+        });
+      });
+  }, [picData]);
+
   return (
     <>
       <SettingContainer>
@@ -74,9 +90,10 @@ const Home = ({ picData, categories }) => {
           return (
             <PicCategory
               key={idx}
+              picData={picData}
               categories={categories}
-              categoryData={categoryData}
               category={el}
+              categoryDataChanged={categoryDataChanged}
             />
           );
         })}
