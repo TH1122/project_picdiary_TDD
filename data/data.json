@@ -60,11 +60,45 @@
   "categories": [
     {
       "id": 0,
-      "category": "데이트"
+      "category": "데이트",
+      "content": [
+        {
+          "date": "2022-02-24",
+          "title": "잊지 못할 첫 만남",
+          "picture": "https://picsum.photos/id/10/300/300",
+          "text": "인상적"
+        },
+        {
+          "date": "2022-02-24",
+          "title": "잊지 못할 첫 만남",
+          "picture": "https://picsum.photos/id/12/300/300",
+          "text": "추억"
+        },
+        {
+          "date": "2022-07-01",
+          "title": "기분 좋은 날",
+          "picture": "https://picsum.photos/id/36/300/300",
+          "text": "운이 좋았다"
+        }
+      ]
     },
     {
       "id": 1,
-      "category": "김코딩과 함께한 날"
+      "category": "김코딩과 함께한 날",
+      "content": [
+        {
+          "date": "2022-04-12",
+          "title": "나들이",
+          "picture": "https://picsum.photos/id/24/300/300",
+          "text": "상쾌함"
+        },
+        {
+          "date": "2022-07-01",
+          "title": "기분 좋은 날",
+          "picture": "https://picsum.photos/id/36/300/300",
+          "text": "운이 좋았다"
+        }
+      ]
     }
   ]
 }

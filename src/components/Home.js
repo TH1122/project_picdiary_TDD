@@ -16,30 +16,25 @@ const CategoryContainer = styled.section`
   align-items: center;
 `;
 
-const Home = ({
-  picData,
-  rawCategoryData,
-  categories,
-  setRawCategoryData,
-  setCategories,
-}) => {
+const Home = ({ picData, categories }) => {
   // const [rawCategoryData, setRawCategoryData] = useState([]);
   // const [categories, setCategories] = useState([]);
-  const [categoryData, setCategoryData] = useState({});
+  const [categoryData, setCategoryData] = useState([]);
   const [isSetting, setIsSetting] = useState(false);
-  // useEffect(() => {
-  //   fetch("http://localhost:3001/categories/")
-  //     .then((res) => {
-  //       if (!res.ok) {
-  //         throw Error("could not fetch the data for that resource");
-  //       }
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setRawCategoryData(data);
-  //       setCategories(data.map((el) => el.category));
-  //     });
-  // }, []);
+  useEffect(() => {
+    // fetch("http://localhost:3001/categories/")
+    //   .then((res) => {
+    //     if (!res.ok) {
+    //       throw Error("could not fetch the data for that resource");
+    //     }
+    //     return res.json();
+    //   })
+    //   .then((data) => {
+    //     setCategoryData(data);
+    //     setCategories(data.map((el) => el.category));
+    //   });
+    console.log(categories, "categories");
+  }, []);
 
   // useEffect(() => {
   //   //카테고리데이터가 배열일 경우
@@ -66,31 +61,6 @@ const Home = ({
   //   setCategoryData(categoryData);
   // }, [categories]);
 
-  useEffect(() => {
-    //카테고리데이터가 객체일 경우
-    categories.forEach((el) => {
-      categoryData[el] = [];
-    });
-    setCategoryData(categoryData);
-  }, [categories]);
-
-  useEffect(() => {
-    // 카테고리데이터가 객체일 경우
-    picData.forEach((el) => {
-      el.content.forEach((content) => {
-        if (categories.includes(content.category)) {
-          categoryData[content.category].push({
-            date: el.date,
-            picture: content.picture,
-            text: content.text,
-            title: el.title,
-          });
-        }
-      });
-    });
-    setCategoryData(categoryData);
-  }, [categories]);
-
   const onSet = () => {
     setIsSetting(!isSetting);
   };
@@ -102,7 +72,12 @@ const Home = ({
       <CategoryContainer>
         {categories.map((el, idx) => {
           return (
-            <PicCategory key={idx} categoryData={categoryData} category={el} />
+            <PicCategory
+              key={idx}
+              categories={categories}
+              categoryData={categoryData}
+              category={el}
+            />
           );
         })}
       </CategoryContainer>

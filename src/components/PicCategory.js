@@ -62,7 +62,7 @@ const Wrap = styled.div`
   }
 `;
 
-const PicCategory = ({ categoryData, category }) => {
+const PicCategory = ({ categoryData, category, categories }) => {
   const settings = {
     dots: true,
     infinite: true,
@@ -74,8 +74,26 @@ const PicCategory = ({ categoryData, category }) => {
   console.log(storyCategory, "storycategoy");
 
   useEffect(() => {
-    setStoryCategory(categoryData[category]);
-  }, []);
+    console.log(category, "category-pic");
+    console.log(categories, "categories=picCategory");
+    fetch("http://localhost:3001/categories/")
+      .then((res) => {
+        if (!res.ok) {
+          throw Error("could not fetch the data for that resource");
+        }
+        return res.json();
+      })
+      .then((data) => {
+        console.log(data, "data=pic");
+        console.log(
+          data.filter((el) => el.category === category)[0].content,
+          "datafilter"
+        );
+        setStoryCategory(
+          data.filter((el) => el.category === category)[0].content
+        );
+      });
+  }, [categories]);
 
   class SimpleSlider extends Component {
     render() {
@@ -83,7 +101,6 @@ const PicCategory = ({ categoryData, category }) => {
         display: flex;
         justify-content: center;
       `;
-
       return (
         <>
           <Slider {...settings}>
